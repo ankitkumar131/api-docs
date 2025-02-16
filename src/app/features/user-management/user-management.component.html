@@ -1,0 +1,136 @@
+<div class="user-management-container">
+  <!-- Header with actions -->
+  <div class="header-actions">
+    <h1>User Management</h1>
+    <button mat-raised-button color="primary" (click)="addUser()">
+      <mat-icon>person_add</mat-icon>
+      Add User
+    </button>
+  </div>
+
+  <!-- Role Overview Cards -->
+  <div class="role-cards">
+    <mat-card *ngFor="let role of roles" class="role-card">
+      <mat-card-header>
+        <mat-card-title>{{role.name}}</mat-card-title>
+        <mat-card-subtitle>
+          {{userCounts[role.name] | async}} users
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="permissions-list">
+          <mat-chip-set>
+            <mat-chip *ngFor="let permission of role.permissions">
+              {{permission}}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Users Table -->
+  <mat-card class="users-table-card">
+    <mat-card-content>
+      <table mat-table [dataSource]="users" class="users-table">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let user">
+            <div class="user-name">
+              <mat-icon class="avatar">account_circle</mat-icon>
+              <span>{{user.name}}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let user">{{user.email}}</td>
+        </ng-container>
+
+        <!-- Role Column -->
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let user">
+            <mat-chip-set>
+              <mat-chip [color]="getRoleColor(user.role)" selected>
+                {{user.role}}
+              </mat-chip>
+            </mat-chip-set>
+          </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let user">
+            <mat-chip-set>
+              <mat-chip [color]="getStatusColor(user.status)" selected>
+                {{user.status}}
+              </mat-chip>
+            </mat-chip-set>
+          </td>
+        </ng-container>
+
+        <!-- Last Active Column -->
+        <ng-container matColumnDef="lastActive">
+          <th mat-header-cell *matHeaderCellDef>Last Active</th>
+          <td mat-cell *matCellDef="let user">
+            {{user.lastActive | date:'medium'}}
+          </td>
+        </ng-container>
+
+        <!-- API Keys Column -->
+        <ng-container matColumnDef="apiKeys">
+          <th mat-header-cell *matHeaderCellDef>API Keys</th>
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button [matBadge]="user.apiKeys" matBadgeColor="primary" (click)="manageApiKeys(user)">
+              <mat-icon>vpn_key</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button [matMenuTriggerFor]="userMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #userMenu="matMenu">
+              <button mat-menu-item (click)="editUser(user)">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item [matMenuTriggerFor]="roleMenu">
+                <mat-icon>admin_panel_settings</mat-icon>
+                <span>Change Role</span>
+              </button>
+              <button mat-menu-item (click)="updateUserStatus(user, user.status === 'Active' ? 'Inactive' : 'Active')">
+                <mat-icon>{{user.status === 'Active' ? 'block' : 'check_circle'}}</mat-icon>
+                <span>{{user.status === 'Active' ? 'Deactivate' : 'Activate'}}</span>
+              </button>
+              <button mat-menu-item (click)="deleteUser(user)" class="danger">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+            <mat-menu #roleMenu="matMenu">
+              <button mat-menu-item *ngFor="let role of roles" (click)="updateUserRole(user, role.name)">
+                <mat-icon [color]="getRoleColor(role.name)">person</mat-icon>
+                <span>{{role.name}}</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

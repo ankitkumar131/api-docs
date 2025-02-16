@@ -1,0 +1,117 @@
+.dashboard-container {
+  padding: 24px;
+  
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .metric-card {
+    mat-card-content {
+      display: flex;
+      align-items: center;
+      padding: 24px;
+
+      .metric-icon {
+        background-color: rgba(25, 118, 210, 0.1);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+
+        mat-icon {
+          color: #1976d2;
+          font-size: 24px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .metric-content {
+        h3 {
+          margin: 0;
+          font-size: 14px;
+          color: #666;
+        }
+
+        .metric-value {
+          margin: 8px 0 0;
+          font-size: 24px;
+          font-weight: 500;
+          color: #333;
+        }
+      }
+    }
+  }
+
+  .activity-card {
+    mat-card-header {
+      margin-bottom: 16px;
+    }
+
+    .activity-list {
+      .activity-item {
+        display: flex;
+        align-items: flex-start;
+        padding: 16px;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .activity-icon {
+          margin-right: 16px;
+          
+          &.create mat-icon {
+            color: #4caf50;
+          }
+          
+          &.update mat-icon {
+            color: #2196f3;
+          }
+          
+          &.alert mat-icon {
+            color: #f44336;
+          }
+        }
+
+        .activity-details {
+          flex: 1;
+
+          .activity-message {
+            margin: 0;
+            color: #333;
+          }
+
+          .activity-time {
+            font-size: 12px;
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+
+    .metrics-grid {
+      gap: 16px;
+    }
+
+    .metric-card {
+      mat-card-content {
+        padding: 16px;
+      }
+    }
+  }
+}

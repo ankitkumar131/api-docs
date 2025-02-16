@@ -1,1 +1,163 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+/* Define theme colors */
+:root {
+  --primary-color: #3f51b5;  /* Indigo 500 */
+  --primary-lighter: #c5cae9; /* Indigo 100 */
+  --primary-darker: #303f9f;  /* Indigo 700 */
+  
+  --accent-color: #ff4081;   /* Pink A200 */
+  --accent-lighter: #ff80ab; /* Pink A100 */
+  --accent-darker: #f50057;  /* Pink A400 */
+  
+  --warn-color: #f44336;    /* Red 500 */
+  --warn-lighter: #ffcdd2;  /* Red 100 */
+  --warn-darker: #d32f2f;   /* Red 700 */
+  
+  --background-color: #fafafa;
+  --text-color: rgba(0, 0, 0, 0.87);
+  --secondary-text: rgba(0, 0, 0, 0.54);
+}
+
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Material component styles */
+.mat-mdc-button.mat-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.mat-mdc-button.mat-accent {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.mat-mdc-button.mat-warn {
+  background-color: var(--warn-color);
+  color: white;
+}
+
+.mat-mdc-card {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mat-mdc-toolbar {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.mat-mdc-sidenav {
+  background-color: white;
+  width: 250px;
+}
+
+.mat-mdc-sidenav-container {
+  height: 100%;
+}
+
+/* Form controls */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-input-element {
+  color: var(--text-color);
+}
+
+/* List styles */
+.mat-mdc-list-item {
+  color: var(--text-color);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* Icon styles */
+.mat-icon {
+  color: var(--secondary-text);
+}
+
+/* Progress indicators */
+.mat-mdc-progress-bar {
+  .mat-primary {
+    background-color: var(--primary-color);
+  }
+  .mat-accent {
+    background-color: var(--accent-color);
+  }
+}
+
+// Fix icon alignment
+.material-icons {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.mat-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+// Utility classes
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+// Animation classes
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

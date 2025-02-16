@@ -1,0 +1,95 @@
+.user-management-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  .role-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+
+    .role-card {
+      .permissions-list {
+        margin-top: 16px;
+
+        mat-chip-set {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+      }
+    }
+  }
+
+  .users-table-card {
+    .users-table {
+      width: 100%;
+
+      .user-name {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .avatar {
+          color: #666;
+        }
+      }
+
+      .mat-column-actions {
+        width: 48px;
+        text-align: center;
+      }
+
+      .mat-column-apiKeys {
+        width: 80px;
+        text-align: center;
+      }
+
+      .danger {
+        color: #f44336;
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .user-management-container {
+    padding: 16px;
+
+    .role-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .users-table {
+      .mat-column-lastActive,
+      .mat-column-apiKeys {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .user-management-container {
+    .users-table {
+      .mat-column-email {
+        display: none;
+      }
+    }
+  }
+}

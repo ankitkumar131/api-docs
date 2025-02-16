@@ -1,0 +1,75 @@
+<div class="dashboard-container">
+  <!-- Metrics Overview -->
+  <div class="metrics-grid">
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>api</mat-icon>
+        </div>
+        <div class="metric-content">
+          <h3>Total APIs</h3>
+          <p class="metric-value">{{apiMetrics.totalApis}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>check_circle</mat-icon>
+        </div>
+        <div class="metric-content">
+          <h3>Active APIs</h3>
+          <p class="metric-value">{{apiMetrics.activeApis}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>sync</mat-icon>
+        </div>
+        <div class="metric-content">
+          <h3>Total Requests</h3>
+          <p class="metric-value">{{apiMetrics.totalRequests}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>error</mat-icon>
+        </div>
+        <div class="metric-content">
+          <h3>Error Rate</h3>
+          <p class="metric-value">{{apiMetrics.errorRate}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Recent Activity -->
+  <mat-card class="activity-card">
+    <mat-card-header>
+      <mat-card-title>Recent Activity</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="activity-list">
+        <div class="activity-item" *ngFor="let activity of recentActivity">
+          <div class="activity-icon" [ngClass]="activity.type">
+            <mat-icon>
+              {{activity.type === 'create' ? 'add_circle' : 
+                activity.type === 'update' ? 'update' : 'warning'}}
+            </mat-icon>
+          </div>
+          <div class="activity-details">
+            <p class="activity-message">{{activity.message}}</p>
+            <span class="activity-time">{{activity.time}}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
