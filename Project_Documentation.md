@@ -42,7 +42,7 @@ Organizations face several challenges in API management:
 - Lack of standardization
 
 ## 4. Solution Architecture
-### 4.1 Frontend Architecture
+### 4.1 Frontend Architecture (Angular)
 - Angular 18 framework
 - Component-based structure
 - Material UI design system
